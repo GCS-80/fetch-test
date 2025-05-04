@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test POST Fetch</title>
+</head>
+<body>
+  <h3>Prueba Fetch a Web App</h3>
+  <form id="test-form">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <button type="button" onclick="probarFetch()">Enviar</button>
+  </form>
+
+  <script>
+    function probarFetch() {
+      const form = document.getElementById("test-form");
+      const data = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycbweS_RWsaQNd5rjjqKA0edYzkBmqGAbpUZBY8jKKT9uDL0xAYfU-C_uRpBBiyY9ZHFY/exec", {
+        method: "POST",
+        body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("✅ Enviado con éxito");
+        } else {
+          alert("❌ Fallo en la respuesta");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("❌ Fallo de conexión");
+      });
+    }
+  </script>
+</body>
+</html>
